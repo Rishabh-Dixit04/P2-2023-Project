@@ -1,97 +1,122 @@
 CC = g++
-JAVA_HOME = /usr/lib/jvm/java-17-openjdk-amd64/include/linux
+JAVA_HOME = /usr/lib/jvm/java-17-openjdk-amd64
 
-HUE_SATURATION_LIBRARY_DESTINATION = ./src/Libraries/HueSaturationLibrary
-HUE_SATURATION_CPP_SRC = ./src/Libraries/HueSaturationLibrary/HueSaturation.cpp ./src/Libraries/HueSaturationLibrary/HueSaturationInterface.cpp
-HUE_SATURATION_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/HueSaturationInterface.java
-HUE_SATURATION_JNI_HEADER = ./src/Libraries/HueSaturationLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_HueSaturationInterface.h
-HUE_SATURATION_LIB_NAME = ./src/main/resources/HueSaturationLib
+HUE_SATURATION_LIBRARY_DESTINATION = ./HueSaturationLibrary
+HUE_SATURATION_CPP_SRC = ./HueSaturationLibrary/HueSaturation.cpp ./HueSaturationLibrary/HueSaturationInterface.cpp
+HUE_SATURATION_JAVA_SRC = ./libraryInterfaces/HueSaturationInterface.java
+HUE_SATURATION_JNI_HEADER = ./HueSaturationLibrary/libraryInterfaces_HueSaturationInterface.h
+HUE_SATURATION_LIB_NAME = ./HueSaturationLibrary/HueSaturationLib.so
 
-BRIGHTNESS_LIBRARY_DESTINATION = ./src/Libraries/BrightnessLibrary
-BRIGHTNESS_CPP_SRC = ./src/Libraries/BrightnessLibrary/Brightness.cpp ./src/Libraries/BrightnessLibrary/BrightnessInterface.cpp
-BRIGHTNESS_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/BrightnessInterface.java
-BRIGHTNESS_JNI_HEADER = ./src/Libraries/BrightnessLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_BrightnessInterface.h
-BRIGHTNESS_LIB_NAME = ./src/main/resources/BrightnessLib
+DOMINANT_COLOUR_LIBRARY_DESTINATION = ./DominantColourLibrary
+DOMINANT_COLOUR_CPP_SRC = ./DominantColourLibrary/DominantColour.cpp ./DominantColourLibrary/DominantColourInterface.cpp
+DOMINANT_COLOUR_JAVA_SRC = ./libraryInterfaces/DominantColourInterface.java
+DOMINANT_COLOUR_JNI_HEADER = ./DominantColourLibrary/libraryInterfaces_DominantColourInterface.h
+DOMINANT_COLOUR_LIB_NAME = ./DominantColourLibrary/DominantColourLib.so
 
-CONTRAST_LIBRARY_DESTINATION = ./src/Libraries/ContrastLibrary
-CONTRAST_CPP_SRC = ./src/Libraries/ContrastLibrary/Contrast.cpp ./src/Libraries/ContrastLibrary/ContrastInterface.cpp
-CONTRAST_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/ContrastInterface.java
-CONTRAST_JNI_HEADER = ./src/Libraries/ContrastLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_ContrastInterface.h
-CONTRAST_LIB_NAME = ./src/main/resources/ContrastLib
+BRIGHTNESS_LIBRARY_DESTINATION = ./BrightnessLibrary
+BRIGHTNESS_CPP_SRC = ./BrightnessLibrary/Brightness.cpp ./BrightnessLibrary/BrightnessInterface.cpp
+BRIGHTNESS_JAVA_SRC = ./libraryInterfaces/BrightnessInterface.java
+BRIGHTNESS_JNI_HEADER = ./BrightnessLibrary/libraryInterfaces_BrightnessInterface.h
+BRIGHTNESS_LIB_NAME = ./BrightnessLibrary/BrightnessLib.so
 
-FLIP_LIBRARY_DESTINATION = ./src/Libraries/FlipLibrary
-FLIP_CPP_SRC = ./src/Libraries/FlipLibrary/Flip.cpp ./src/Libraries/FlipLibrary/FlipInterface.cpp
-FLIP_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/FlipInterface.java
-FLIP_JNI_HEADER = ./src/Libraries/FlipLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_FlipInterface.h
-FLIP_LIB_NAME = ./src/main/resources/FlipLib
+CONTRAST_LIBRARY_DESTINATION = ./ContrastLibrary
+CONTRAST_CPP_SRC = ./ContrastLibrary/Contrast.cpp ./ContrastLibrary/ContrastInterface.cpp
+CONTRAST_JAVA_SRC = ./libraryInterfaces/ContrastInterface.java
+CONTRAST_JNI_HEADER = ./ContrastLibrary/libraryInterfaces_ContrastInterface.h
+CONTRAST_LIB_NAME = ./ContrastLibrary/ContrastLib.so
 
-GAUSSIAN_BLUR_LIBRARY_DESTINATION = ./src/Libraries/GaussianBlurLibrary
-GAUSSIAN_BLUR_CPP_SRC = ./src/Libraries/GaussianBlurLibrary/GaussianBlur.cpp ./src/Libraries/GaussianBlurLibrary/GaussianBlurInterface.cpp
-GAUSSIAN_BLUR_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/GaussianBlurInterface.java
-GAUSSIAN_BLUR_JNI_HEADER = ./src/Libraries/GaussianBlurLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_GaussianBlurInterface.h
-GAUSSIAN_BLUR_LIB_NAME = ./src/main/resources/GaussianBlurLib
+FLIP_LIBRARY_DESTINATION = ./FlipLibrary
+FLIP_CPP_SRC = ./FlipLibrary/Flip.cpp ./FlipLibrary/FlipInterface.cpp
+FLIP_JAVA_SRC = ./libraryInterfaces/FlipInterface.java
+FLIP_JNI_HEADER = ./FlipLibrary/libraryInterfaces_FlipInterface.h
+FLIP_LIB_NAME = ./FlipLibrary/FlipLib.so
 
-GRAYSCALE_LIBRARY_DESTINATION = ./src/Libraries/GrayscaleLibrary
-GRAYSCALE_CPP_SRC = ./src/Libraries/GrayscaleLibrary/Grayscale.cpp ./src/Libraries/GrayscaleLibrary/GrayscaleInterface.cpp
-GRAYSCALE_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/GrayscaleInterface.java
-GRAYSCALE_JNI_HEADER = ./src/Libraries/GrayscaleLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_GrayscaleInterface.h
-GRAYSCALE_LIB_NAME = ./src/main/resources/GrayscaleLib
+GAUSSIAN_BLUR_LIBRARY_DESTINATION = ./GaussianBlurLibrary
+GAUSSIAN_BLUR_CPP_SRC = ./GaussianBlurLibrary/GaussianBlur.cpp ./GaussianBlurLibrary/GaussianBlurInterface.cpp
+GAUSSIAN_BLUR_JAVA_SRC = ./libraryInterfaces/GaussianBlurInterface.java
+GAUSSIAN_BLUR_JNI_HEADER = ./GaussianBlurLibrary/libraryInterfaces_GaussianBlurInterface.h
+GAUSSIAN_BLUR_LIB_NAME = ./GaussianBlurLibrary/GaussianBlurLib.so
 
-INVERT_LIBRARY_DESTINATION = ./src/Libraries/InvertLibrary
-INVERT_CPP_SRC = ./src/Libraries/InvertLibrary/Invert.cpp ./src/Libraries/InvertLibrary/InvertInterface.cpp
-INVERT_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/InvertInterface.java
-INVERT_JNI_HEADER = ./src/Libraries/InvertLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_InvertInterface.h
-INVERT_LIB_NAME = ./src/main/resources/InvertLib
+GRAYSCALE_LIBRARY_DESTINATION = ./GrayscaleLibrary
+GRAYSCALE_CPP_SRC = ./GrayscaleLibrary/Grayscale.cpp ./GrayscaleLibrary/GrayscaleInterface.cpp
+GRAYSCALE_JAVA_SRC = ./libraryInterfaces/GrayscaleInterface.java
+GRAYSCALE_JNI_HEADER = ./GrayscaleLibrary/libraryInterfaces_GrayscaleInterface.h
+GRAYSCALE_LIB_NAME = ./GrayscaleLibrary/GrayscaleLib.so
 
-ROTATION_LIBRARY_DESTINATION = ./src/Libraries/RotationLibrary
-ROTATION_CPP_SRC = ./src/Libraries/RotationLibrary/Rotation.cpp ./src/Libraries/RotationLibrary/RotationInterface.cpp
-ROTATION_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/RotationInterface.java
-ROTATION_JNI_HEADER = ./src/Libraries/RotationLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_RotationInterface.h
-ROTATION_LIB_NAME = ./src/main/resources/RotationLib
+INVERT_LIBRARY_DESTINATION = ./InvertLibrary
+INVERT_CPP_SRC = ./InvertLibrary/Invert.cpp ./InvertLibrary/InvertInterface.cpp
+INVERT_JAVA_SRC = ./libraryInterfaces/InvertInterface.java
+INVERT_JNI_HEADER = ./InvertLibrary/libraryInterfaces_InvertInterface.h
+INVERT_LIB_NAME = ./InvertLibrary/InvertLib.so
 
-SEPIA_LIBRARY_DESTINATION = ./src/Libraries/SepiaLibrary
-SEPIA_CPP_SRC = ./src/Libraries/SepiaLibrary/Sepia.cpp ./src/Libraries/SepiaLibrary/SepiaInterface.cpp
-SEPIA_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/SepiaInterface.java
-SEPIA_JNI_HEADER = ./src/Libraries/SepiaLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_SepiaInterface.h
-SEPIA_LIB_NAME = ./src/main/resources/SepiaLib
+ROTATION_LIBRARY_DESTINATION = ./RotationLibrary
+ROTATION_CPP_SRC = ./RotationLibrary/Rotation.cpp ./RotationLibrary/RotationInterface.cpp
+ROTATION_JAVA_SRC = ./libraryInterfaces/RotationInterface.java
+ROTATION_JNI_HEADER = ./RotationLibrary/libraryInterfaces_RotationInterface.h
+ROTATION_LIB_NAME = ./RotationLibrary/RotationLib.so
 
-SHARPEN_LIBRARY_DESTINATION = ./src/Libraries/SharpenLibrary
-SHARPEN_CPP_SRC = ./src/Libraries/SharpenLibrary/Sharpen.cpp ./src/Libraries/SharpenLibrary/SharpenInterface.cpp
-SHARPEN_JAVA_SRC = ./src/main/java/com/iiitb/imageEffectApplication/libraryInterfaces/SharpenInterface.java
-SHARPEN_JNI_HEADER = ./src/Libraries/SharpenLibrary/com_iiitb_imageEffectApplication_libraryInterfaces_SharpenInterface.h
-SHARPEN_LIB_NAME = ./src/main/resources/SharpenLib
+SEPIA_LIBRARY_DESTINATION = ./SepiaLibrary
+SEPIA_CPP_SRC = ./SepiaLibrary/Sepia.cpp ./SepiaLibrary/SepiaInterface.cpp
+SEPIA_JAVA_SRC = ./libraryInterfaces/SepiaInterface.java
+SEPIA_JNI_HEADER = ./SepiaLibrary/libraryInterfaces_SepiaInterface.h
+SEPIA_LIB_NAME = ./SepiaLibrary/SepiaLib.so
+
+SHARPEN_LIBRARY_DESTINATION = ./SharpenLibrary
+SHARPEN_CPP_SRC = ./SharpenLibrary/Sharpen.cpp ./SharpenLibrary/SharpenInterface.cpp
+SHARPEN_JAVA_SRC = ./libraryInterfaces/SharpenInterface.java
+SHARPEN_JNI_HEADER = ./SharpenLibrary/libraryInterfaces_SharpenInterface.h
+SHARPEN_LIB_NAME = ./SharpenLibrary/SharpenLib.so
 
 
 
-all: $(HUE_SATURATION_LIB_NAME) $(BRIGHTNESS_LIB_NAME) $(CONTRAST_LIB_NAME) $(FLIP_LIB_NAME) $(GAUSSIAN_BLUR_LIB_NAME) $(GRAYSCALE_LIB_NAME) $(INVERT_LIB_NAME) $(ROTATION_LIB_NAME) $(SEPIA_LIB_NAME) $(SHARPEN_LIB_NAME)
+all: $(ARITHMETIC_LIB_NAME) $(HUE_SATURATION_LIB_NAME) $(DOMINANT_COLOUR_LIB_NAME) $(BRIGHTNESS_LIB_NAME) $(CONTRAST_LIB_NAME) $(FLIP_LIB_NAME) $(GAUSSIAN_BLUR_LIB_NAME) $(GRAYSCALE_LIB_NAME) $(INVERT_LIB_NAME) $(ROTATION_LIB_NAME) $(SEPIA_LIB_NAME) $(SHARPEN_LIB_NAME)
+
+$(ARITHMETIC_LIB_NAME): $(ARITHMETIC_CPP_SRC) $(ARITHMETIC_JNI_HEADER)
+	$(CC) -shared -o $@ $(ARITHMETIC_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
+
+$(ARITHMETIC_JNI_HEADER): $(ARITHMETIC_JAVA_SRC)
+	javac -h $(ARITHMETIC_LIBRARY_DESTINATION) $(ARITHMETIC_JAVA_SRC)
+
+
+
 
 
 $(HUE_SATURATION_LIB_NAME): $(HUE_SATURATION_CPP_SRC) $(HUE_SATURATION_JNI_HEADER)
-	$(CC) -shared -o $@ $(HUE_SATURATION_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(HUE_SATURATION_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(HUE_SATURATION_JNI_HEADER): $(HUE_SATURATION_JAVA_SRC)
-	javac -cp ./src/main/java -h $(HUE_SATURATION_LIBRARY_DESTINATION) $(HUE_SATURATION_JAVA_SRC)
+	javac -h $(HUE_SATURATION_LIBRARY_DESTINATION) $(HUE_SATURATION_JAVA_SRC)
 
+
+
+
+
+
+$(DOMINANT_COLOUR_LIB_NAME): $(DOMINANT_COLOUR_CPP_SRC) $(DOMINANT_COLOUR_JNI_HEADER)
+	$(CC) -shared -o $@ $(DOMINANT_COLOUR_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
+
+$(DOMINANT_COLOUR_JNI_HEADER): $(DOMINANT_COLOUR_JAVA_SRC)
+	javac -h $(DOMINANT_COLOUR_LIBRARY_DESTINATION) $(DOMINANT_COLOUR_JAVA_SRC)
 
 
 
 
 
 $(BRIGHTNESS_LIB_NAME): $(BRIGHTNESS_CPP_SRC) $(BRIGHTNESS_JNI_HEADER)
-	$(CC) -shared -o $@ $(BRIGHTNESS_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(BRIGHTNESS_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(BRIGHTNESS_JNI_HEADER): $(BRIGHTNESS_JAVA_SRC)
-	javac -cp ./src/main/java -h $(BRIGHTNESS_LIBRARY_DESTINATION) $(BRIGHTNESS_JAVA_SRC)
+	javac -h $(BRIGHTNESS_LIBRARY_DESTINATION) $(BRIGHTNESS_JAVA_SRC)
 
 
 
 
 
 $(CONTRAST_LIB_NAME): $(CONTRAST_CPP_SRC) $(CONTRAST_JNI_HEADER)
-	$(CC) -shared -o $@ $(CONTRAST_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(CONTRAST_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(CONTRAST_JNI_HEADER): $(CONTRAST_JAVA_SRC)
-	javac -cp ./src/main/java -h $(CONTRAST_LIBRARY_DESTINATION) $(CONTRAST_JAVA_SRC)
+	javac -h $(CONTRAST_LIBRARY_DESTINATION) $(CONTRAST_JAVA_SRC)
 
 
 
@@ -99,10 +124,10 @@ $(CONTRAST_JNI_HEADER): $(CONTRAST_JAVA_SRC)
 
 
 $(FLIP_LIB_NAME): $(FLIP_CPP_SRC) $(FLIP_JNI_HEADER)
-	$(CC) -shared -o $@ $(FLIP_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(FLIP_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(FLIP_JNI_HEADER): $(FLIP_JAVA_SRC)
-	javac -cp ./src/main/java -h $(FLIP_LIBRARY_DESTINATION) $(FLIP_JAVA_SRC)
+	javac -h $(FLIP_LIBRARY_DESTINATION) $(FLIP_JAVA_SRC)
 
 
 
@@ -111,10 +136,10 @@ $(FLIP_JNI_HEADER): $(FLIP_JAVA_SRC)
 
 
 $(GAUSSIAN_BLUR_LIB_NAME): $(GAUSSIAN_BLUR_CPP_SRC) $(GAUSSIAN_BLUR_JNI_HEADER)
-	$(CC) -shared -o $@ $(GAUSSIAN_BLUR_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(GAUSSIAN_BLUR_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(GAUSSIAN_BLUR_JNI_HEADER): $(GAUSSIAN_BLUR_JAVA_SRC)
-	javac -cp ./src/main/java -h $(GAUSSIAN_BLUR_LIBRARY_DESTINATION) $(GAUSSIAN_BLUR_JAVA_SRC)
+	javac -h $(GAUSSIAN_BLUR_LIBRARY_DESTINATION) $(GAUSSIAN_BLUR_JAVA_SRC)
 
 
 
@@ -122,10 +147,10 @@ $(GAUSSIAN_BLUR_JNI_HEADER): $(GAUSSIAN_BLUR_JAVA_SRC)
 
 
 $(GRAYSCALE_LIB_NAME): $(GRAYSCALE_CPP_SRC) $(GRAYSCALE_JNI_HEADER)
-	$(CC) -shared -o $@ $(GRAYSCALE_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(GRAYSCALE_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(GRAYSCALE_JNI_HEADER): $(GRAYSCALE_JAVA_SRC)
-	javac -cp ./src/main/java -h $(GRAYSCALE_LIBRARY_DESTINATION) $(GRAYSCALE_JAVA_SRC)
+	javac -h $(GRAYSCALE_LIBRARY_DESTINATION) $(GRAYSCALE_JAVA_SRC)
 
 
 
@@ -133,42 +158,44 @@ $(GRAYSCALE_JNI_HEADER): $(GRAYSCALE_JAVA_SRC)
 
 
 $(INVERT_LIB_NAME): $(INVERT_CPP_SRC) $(INVERT_JNI_HEADER)
-	$(CC) -shared -o $@ $(INVERT_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(INVERT_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(INVERT_JNI_HEADER): $(INVERT_JAVA_SRC)
-	javac -cp ./src/main/java -h $(INVERT_LIBRARY_DESTINATION) $(INVERT_JAVA_SRC)
+	javac -h $(INVERT_LIBRARY_DESTINATION) $(INVERT_JAVA_SRC)
 
 
 
 
 $(ROTATION_LIB_NAME): $(ROTATION_CPP_SRC) $(ROTATION_JNI_HEADER)
-	$(CC) -shared -o $@ $(ROTATION_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(ROTATION_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(ROTATION_JNI_HEADER): $(ROTATION_JAVA_SRC)
-	javac -cp ./src/main/java -h $(ROTATION_LIBRARY_DESTINATION) $(ROTATION_JAVA_SRC)
+	javac -h $(ROTATION_LIBRARY_DESTINATION) $(ROTATION_JAVA_SRC)
 
 
 
 
 $(SEPIA_LIB_NAME): $(SEPIA_CPP_SRC) $(SEPIA_JNI_HEADER)
-	$(CC) -shared -o $@ $(SEPIA_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(SEPIA_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(SEPIA_JNI_HEADER): $(SEPIA_JAVA_SRC)
-	javac -cp ./src/main/java -h $(SEPIA_LIBRARY_DESTINATION) $(SEPIA_JAVA_SRC)
+	javac -h $(SEPIA_LIBRARY_DESTINATION) $(SEPIA_JAVA_SRC)
 
 
 
 
 $(SHARPEN_LIB_NAME): $(SHARPEN_CPP_SRC) $(SHARPEN_JNI_HEADER)
-	$(CC) -shared -o $@ $(SHARPEN_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
+	$(CC) -shared -o $@ $(SHARPEN_CPP_SRC) -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 
 $(SHARPEN_JNI_HEADER): $(SHARPEN_JAVA_SRC)
-	javac -cp ./src/main/java -h $(SHARPEN_LIBRARY_DESTINATION) $(SHARPEN_JAVA_SRC)
+	javac -h $(SHARPEN_LIBRARY_DESTINATION) $(SHARPEN_JAVA_SRC)
 
 
 
 clean:
-	rm -f $(HUE_SATURATION_LIB_NAME) $(HUE_SATURATION_JNI_HEADER) \
+	rm -f $(ARITHMETIC_LIB_NAME) $(ARITHMETIC_JNI_HEADER) \
+	$(HUE_SATURATION_LIB_NAME) $(HUE_SATURATION_JNI_HEADER) \
+	$(DOMINANT_COLOUR_LIB_NAME) $(DOMINANT_COLOUR_JNI_HEADER) \
 	$(BRIGHTNESS_LIB_NAME) $(BRIGHTNESS_JNI_HEADER) \
 	$(CONTRAST_LIB_NAME) $(CONTRAST_JNI_HEADER) \
 	$(FLIP_LIB_NAME) $(FLIP_JNI_HEADER) \
