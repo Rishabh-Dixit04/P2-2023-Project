@@ -1,9 +1,12 @@
 package main.java.com.iiitb.imageEffectApplication.effectImplementation;
 import com.iiitb.imageEffectApplication.baseEffects.PhotoEffect;
-import libraryInterfaces.Pixel;
+import com.iiitb.imageEffectApplication.libraryInterfaces.Pixel;
+import com.iiitb.imageEffectApplication.libraryInterfaces.GrayscaleInterface;
+import com.iiitb.imageEffectApplication.service.LoggingService;
 
 public class GrayscaleEffect implements PhotoEffect {
-    Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){       
-        Pixel[][] imageVector = libraryInterfaces.GrayscaleInterface.applyGrayscale(image);          //calling applyGrayscale method from libraryInterfaces package
+    public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){       
+        Pixel[][] imageVector = GrayscaleInterface.applyGrayscale(image);          //calling applyGrayscale method from libraryInterfaces package
+        return imageVector;
     }
 }
