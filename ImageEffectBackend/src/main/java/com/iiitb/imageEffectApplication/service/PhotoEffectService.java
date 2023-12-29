@@ -2,6 +2,8 @@ package com.iiitb.imageEffectApplication.service;
 
 import com.iiitb.imageEffectApplication.utils.ProcessingUtils;
 import libraryInterfaces.Pixel;
+import main.java.com.iiitb.imageEffectApplication.effectImplementation.GrayscaleEffect;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -146,7 +148,11 @@ public class PhotoEffectService {
             // ACTUAL WORK STARTS HERE
 
             // TODO
-            Pixel[][] modifiedImage = inputImage; // Replace this with actual modified image
+
+            GrayscaleEffect effect = new GrayscaleEffect();
+           
+
+            Pixel[][] modifiedImage =  effect.apply(inputImage, imageName, null); // Replace this with actual modified image
 
             // ACTUAL WORK ENDS HERE
 
