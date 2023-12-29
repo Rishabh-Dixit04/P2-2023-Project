@@ -146,7 +146,9 @@ public class PhotoEffectService {
             // ACTUAL WORK STARTS HERE
 
             // TODO
-            Pixel[][] modifiedImage = inputImage; // Replace this with actual modified image
+
+            GrayscaleEffect effect = new GrayscaleEffect();         
+            Pixel[][] modifiedImage =  effect.apply(inputImage, imageName, null); // Replace this with actual modified image
 
             // ACTUAL WORK ENDS HERE
 
