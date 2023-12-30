@@ -1,5 +1,6 @@
 package com.iiitb.imageEffectApplication.service;
 
+import com.iiitb.imageEffectApplication.exception.IllegalParameterException;
 import com.iiitb.imageEffectApplication.libraryInterfaces.Pixel;
 import com.iiitb.imageEffectApplication.utils.ProcessingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
-import main.java.com.iiitb.imageEffectApplication.effectImplementation.GrayscaleEffect; 
+import main.java.com.iiitb.imageEffectApplication.effectImplementation.GrayscaleEffect;
+import main.java.com.iiitb.imageEffectApplication.effectImplementation.HueSaturationEffect; 
 
 @Service
 public class PhotoEffectService {
@@ -29,7 +31,23 @@ public class PhotoEffectService {
             // ACTUAL WORK STARTS HERE
 
             // TODO
-            Pixel[][] modifiedImage = inputImage; // Replace this with actual modified image
+
+            HueSaturationEffect effect = new HueSaturationEffect();
+            //try{
+                effect.setParameter("saturation",saturationAmount);
+            // }
+            // catch(IllegalParameterException e){
+            //     e.printStackTrace();
+            // }
+            // try{
+                effect.setParameter("hue",hueAmount);
+            // }
+            // catch(IllegalParameterException e){
+            //     e.printStackTrace();
+            // }
+                 
+            Pixel[][] modifiedImage =  effect.apply(inputImage, imageName, null);    // Replace this with actual modified image
+           
 
             // ACTUAL WORK ENDS HERE
 
@@ -149,10 +167,11 @@ public class PhotoEffectService {
 
             // TODO
 
-            GrayscaleEffect effect = new GrayscaleEffect();         
+            GrayscaleEffect effect = new GrayscaleEffect();  
+            //System.out.println("hi");       
             Pixel[][] modifiedImage =  effect.apply(inputImage, imageName, null); // Replace this with actual modified image
-
-            // ACTUAL WORK ENDS HERE
+            
+            // // ACTUAL WORK ENDS HERE
 
             return processingUtils.postProcessing(modifiedImage);
 
@@ -160,6 +179,8 @@ public class PhotoEffectService {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+        
     }
 
     public ResponseEntity<byte[]> applyInvertEffect(MultipartFile imageFile) {

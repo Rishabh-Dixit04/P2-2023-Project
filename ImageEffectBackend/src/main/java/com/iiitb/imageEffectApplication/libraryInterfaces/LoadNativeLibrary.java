@@ -7,6 +7,7 @@ import java.io.InputStream;
 
 public class LoadNativeLibrary {
     public static void loadNativeLibrary(String libraryName) {
+        //System.out.println("Hello");
         try {
             // Load the native library from the classpath resource
             InputStream inputStream = LoadNativeLibrary.class.getClassLoader().getResourceAsStream(libraryName);

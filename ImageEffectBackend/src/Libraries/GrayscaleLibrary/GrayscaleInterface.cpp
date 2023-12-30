@@ -2,7 +2,15 @@
 #include "Grayscale.h"
 #include "../Pixel.h"
 #include <vector>
+#include <iostream>
+
 using namespace std;
+
+
+
+
+
+
 
 JNIEXPORT jobjectArray JNICALL Java_com_iiitb_imageEffectApplication_libraryInterfaces_GrayscaleInterface_applyGrayscale
   (JNIEnv * env, jclass jobj, jobjectArray image) {
@@ -56,6 +64,7 @@ JNIEXPORT jobjectArray JNICALL Java_com_iiitb_imageEffectApplication_libraryInte
     // Call the function here
     // TODO
 
+    //cout << "hi";
     long h = imageVector.size();;
     long w = imageVector[0].size();
     applyGrayscale(imageVector,h,w);
