@@ -26,21 +26,22 @@ void applyHueSaturation(std::vector<std::vector<Pixel>> &imageVector, float satu
             float minVal = std::min({r, g, b});
 
             float lightness = (maxVal + minVal) / 2.0f;
-
             float delta = maxVal - minVal;
 
-            float saturation = 0.0f;
-            float hue = 0.0f;
+            float hue, saturation;
 
-            if (delta > 0.0f) {
-                saturation = (lightness < 0.5f) ? (delta / (maxVal + minVal)) : (delta / (2.0f - maxVal - minVal));
+            if (delta == 0) {
+                hue = 0.0f;
+                saturation = 0.0f;
+            } else {
+                saturation = delta / (1 - std::abs(2 * lightness - 1));
 
                 if (maxVal == r) {
-                    hue = (g - b) / delta + ((g < b) ? 6.0f : 0.0f);
+                    hue = (g - b) / delta + (g < b ? 6 : 0);
                 } else if (maxVal == g) {
-                    hue = (b - r) / delta + 2.0f;
+                    hue = (b - r) / delta + 2;
                 } else {
-                    hue = (r - g) / delta + 4.0f;
+                    hue = (r - g) / delta + 4;
                 }
 
                 hue /= 6.0f;
@@ -52,24 +53,47 @@ void applyHueSaturation(std::vector<std::vector<Pixel>> &imageVector, float satu
 
             // Ensure saturation and hue are within valid ranges
             saturation = std::max(0.0f, std::min(1.0f, saturation));
-            hue = std::max(0.0f, std::min(1.0f, hue));
+            hue = std::fmod(hue, 1.0f);
 
             // Convert HSL back to RGB
-            float q = (lightness < 0.5f) ? (lightness * (1.0f + saturation)) : (lightness + saturation - lightness * saturation);
-            float p = 2.0f * lightness - q;
+            float C = (1 - std::abs(2 * lightness - 1)) * saturation;
+            float X = C * (1 - std::abs(std::fmod(hue * 6, 2) - 1));
+            float m = lightness - C / 2;
 
-            pixel.r = static_cast<int>(hueToRGB(p, q, hue + 1.0f / 3.0f) * 255);
-            pixel.g = static_cast<int>(hueToRGB(p, q, hue) * 255);
-            pixel.b = static_cast<int>(hueToRGB(p, q, hue - 1.0f / 3.0f) * 255);
+            float rNew, gNew, bNew;
 
-            // Clamp to 8-bit per channel
-            pixel.r = std::max(0, std::min(255, pixel.r));
-            pixel.g = std::max(0, std::min(255, pixel.g));
-            pixel.b = std::max(0, std::min(255, pixel.b));
+            if (hue < 1.0 / 6) {
+                rNew = C;
+                gNew = X;
+                bNew = 0;
+            } else if (hue < 2.0 / 6) {
+                rNew = X;
+                gNew = C;
+                bNew = 0;
+            } else if (hue < 3.0 / 6) {
+                rNew = 0;
+                gNew = C;
+                bNew = X;
+            } else if (hue < 4.0 / 6) {
+                rNew = 0;
+                gNew = X;
+                bNew = C;
+            } else if (hue < 5.0 / 6) {
+                rNew = X;
+                gNew = 0;
+                bNew = C;
+            } else {
+                rNew = C;
+                gNew = 0;
+                bNew = X;
+            }
+
+            pixel.r = static_cast<int>((rNew + m) * 255);
+            pixel.g = static_cast<int>((gNew + m) * 255);
+            pixel.b = static_cast<int>((bNew + m) * 255);
         }
     }
 }
-
 
 
 
