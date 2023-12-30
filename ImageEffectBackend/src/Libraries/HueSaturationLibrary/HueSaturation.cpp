@@ -5,15 +5,6 @@
 #include <algorithm>
 using namespace std;
 
-float hueToRGB(float p, float q, float t) {
-    if (t < 0.0f) t += 1.0f;
-    if (t > 1.0f) t -= 1.0f;
-    if (t < 1.0f / 6.0f) return p + (q - p) * 6.0f * t;
-    if (t < 1.0f / 2.0f) return q;
-    if (t < 2.0f / 3.0f) return p + (q - p) * (2.0f / 3.0f - t) * 6.0f;
-    return p;
-}
-
 void applyHueSaturation(std::vector<std::vector<Pixel>> &imageVector, float saturationValue, float hueValue) {
     for (auto &row : imageVector) {
         for (auto &pixel : row) {
