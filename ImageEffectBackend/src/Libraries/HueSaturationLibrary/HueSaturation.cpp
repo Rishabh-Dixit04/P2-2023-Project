@@ -2,48 +2,76 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 using namespace std;
 
+float hueToRGB(float p, float q, float t) {
+    if (t < 0.0f) t += 1.0f;
+    if (t > 1.0f) t -= 1.0f;
+    if (t < 1.0f / 6.0f) return p + (q - p) * 6.0f * t;
+    if (t < 1.0f / 2.0f) return q;
+    if (t < 2.0f / 3.0f) return p + (q - p) * (2.0f / 3.0f - t) * 6.0f;
+    return p;
+}
 
-// Function to perform hue and saturation adjustment using a convolution matrix
-void applyHueSaturation(vector< vector<Pixel> > &imageVector, float saturationValue, float hueValue) {
-    // Define the convolution matrix for hue and saturation adjustments
-    float matrix[3][3] = {
-        {0.299, 0.587, 0.114},
-        {0.299, 0.587, 0.114},
-        {0.299, 0.587, 0.114}
-    };
+void applyHueSaturation(std::vector<std::vector<Pixel>> &imageVector, float saturationValue, float hueValue) {
+    for (auto &row : imageVector) {
+        for (auto &pixel : row) {
+            // Convert RGB to HSL
+            float r = pixel.r / 255.0f;
+            float g = pixel.g / 255.0f;
+            float b = pixel.b / 255.0f;
 
-    // Loop through each pixel in the image vector
-    for (int i = 0; i < imageVector.size(); ++i) {
-        for (int j = 0; j < imageVector[i].size(); ++j) {
-            float r = 0, g = 0, b = 0;
-    
-            // Apply convolution to calculate new RGB values
-            for (int m = -1; m <= 1; ++m) {
-                for (int n = -1; n <= 1; ++n) {
-                    int x = i + m;
-                    int y = j + n;
+            float maxVal = std::max({r, g, b});
+            float minVal = std::min({r, g, b});
 
-                    // Check boundary conditions
-                    if (x >= 0 && x < imageVector.size() && y >= 0 && y < imageVector[i].size()) {
-                        r += imageVector[x][y].r * matrix[m + 1][n + 1];
-                        g += imageVector[x][y].g * matrix[m + 1][n + 1];
-                        b += imageVector[x][y].b * matrix[m + 1][n + 1];
-                    }
+            float lightness = (maxVal + minVal) / 2.0f;
+
+            float delta = maxVal - minVal;
+
+            float saturation = 0.0f;
+            float hue = 0.0f;
+
+            if (delta > 0.0f) {
+                saturation = (lightness < 0.5f) ? (delta / (maxVal + minVal)) : (delta / (2.0f - maxVal - minVal));
+
+                if (maxVal == r) {
+                    hue = (g - b) / delta + ((g < b) ? 6.0f : 0.0f);
+                } else if (maxVal == g) {
+                    hue = (b - r) / delta + 2.0f;
+                } else {
+                    hue = (r - g) / delta + 4.0f;
                 }
+
+                hue /= 6.0f;
             }
 
-            // Hue adjustment
-            float h = atan2(b - g, sqrt((r - g) * (r - g) + (b - g) * (r - b))) * (180.0 / M_PI) + hueValue;
+            // Adjust saturation and hue
+            saturation += saturationValue / 100.0f;
+            hue += hueValue / 100.0f;
 
-            // Saturation adjustment
-            float s = sqrt((r - g) * (r - g) + (b - g) * (r - b) + (b - g) * (b - g));
+            // Ensure saturation and hue are within valid ranges
+            saturation = std::max(0.0f, std::min(1.0f, saturation));
+            hue = std::max(0.0f, std::min(1.0f, hue));
 
-            // Update pixel values
-            imageVector[i][j].r = s * sin(h) + g;
-            imageVector[i][j].g = s * cos(h) + g;
-            imageVector[i][j].b = s * cos(h) + b;
+            // Convert HSL back to RGB
+            float q = (lightness < 0.5f) ? (lightness * (1.0f + saturation)) : (lightness + saturation - lightness * saturation);
+            float p = 2.0f * lightness - q;
+
+            pixel.r = static_cast<int>(hueToRGB(p, q, hue + 1.0f / 3.0f) * 255);
+            pixel.g = static_cast<int>(hueToRGB(p, q, hue) * 255);
+            pixel.b = static_cast<int>(hueToRGB(p, q, hue - 1.0f / 3.0f) * 255);
+
+            // Clamp to 8-bit per channel
+            pixel.r = std::max(0, std::min(255, pixel.r));
+            pixel.g = std::max(0, std::min(255, pixel.g));
+            pixel.b = std::max(0, std::min(255, pixel.b));
         }
     }
 }
+
+
+
+
+
+

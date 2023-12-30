@@ -27,24 +27,24 @@ public class PhotoEffectService {
             Pixel[][] inputImage = processingUtils.preprocessing(imageFile);
             String imageName = imageFile.getOriginalFilename();
 
-
+            
             // ACTUAL WORK STARTS HERE
 
             // TODO
 
             HueSaturationEffect effect = new HueSaturationEffect();
-            //try{
+            try{
                 effect.setParameter("saturation",saturationAmount);
-            // }
-            // catch(IllegalParameterException e){
-            //     e.printStackTrace();
-            // }
-            // try{
+            }
+            catch(IllegalParameterException e){
+                e.printStackTrace();
+            }
+            try{
                 effect.setParameter("hue",hueAmount);
-            // }
-            // catch(IllegalParameterException e){
-            //     e.printStackTrace();
-            // }
+            }
+            catch(IllegalParameterException e){
+                e.printStackTrace();
+            }
                  
             Pixel[][] modifiedImage =  effect.apply(inputImage, imageName, null);    // Replace this with actual modified image
            

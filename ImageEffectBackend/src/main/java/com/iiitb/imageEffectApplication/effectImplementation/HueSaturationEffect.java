@@ -10,8 +10,8 @@ import com.iiitb.imageEffectApplication.exception.IllegalParameterException;
 public class HueSaturationEffect implements ParameterizableEffect  {
 
     public static float hue, saturation = 0;
-    public void setParameter(String paramName, float value){
-            System.out.println("hi");
+    public void setParameter(String paramName, float value) throws IllegalParameterException{
+            //System.out.println("hi");
             // if ((paramName == "hue" && (value>360 || value<0)) || (paramName == "saturation" && (value>100 || value<0))){
             //     IllegalParameterException exception = new IllegalParameterException("Value out-of-bounds");
             //     throw exception;
@@ -25,7 +25,7 @@ public class HueSaturationEffect implements ParameterizableEffect  {
     }
 
     public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){
-        
+        //System.out.println("apply");
         Pixel[][] imageVector = HueSaturationInterface.applyHueSaturation(image, saturation, hue);         
         return imageVector;
 
