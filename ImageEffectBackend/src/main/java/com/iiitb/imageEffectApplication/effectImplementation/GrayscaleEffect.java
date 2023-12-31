@@ -4,14 +4,23 @@ import com.iiitb.imageEffectApplication.libraryInterfaces.Pixel;
 import com.iiitb.imageEffectApplication.libraryInterfaces.GrayscaleInterface;
 import com.iiitb.imageEffectApplication.service.LoggingService;
 
-public class GrayscaleEffect implements PhotoEffect {
-    public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){     
-        
+class Thread3 extends Thread{
+    private LoggingService ls;
 
-        Pixel[][] imageVector = GrayscaleInterface.applyGrayscale(image);  
-        
-        loggingService.addLog(fileName, "Grayscale", "" );
-        
-        return imageVector;
+    private String fileName;
+    public Thread3(LoggingService l, String fn){
+        ls = l;
+        fileName = fn;
+    }
+    public void run(){
+        ls.addLog(fileName, "Grayscale", "");
+    }
+}
+public class GrayscaleEffect implements PhotoEffect {
+    public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){
+        Thread t1 = new Thread3(loggingService, fileName);
+        t1.start();
+        return GrayscaleInterface.applyGrayscale(image);
+
     }
 }

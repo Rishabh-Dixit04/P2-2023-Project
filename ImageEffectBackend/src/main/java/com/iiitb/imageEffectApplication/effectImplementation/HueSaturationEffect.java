@@ -7,29 +7,41 @@ import com.iiitb.imageEffectApplication.service.LoggingService;
 import com.iiitb.imageEffectApplication.exception.IllegalParameterException;
 
 
+class Thread4 extends Thread{
+    private LoggingService ls;
+    private float hue;
+    private float sat;
+    private String fileName;
+    public Thread4( LoggingService l, float h, float s, String fn ){
+        ls = l;
+        sat = s;
+        hue = h;
+        fileName = fn;
+    }
+    public void run(){
+        String optionValue = "Hue: " + hue + ", Saturation: " + sat;
+        ls.addLog(fileName, "Hue-Saturation", optionValue );
+    }
+}
 public class HueSaturationEffect implements ParameterizableEffect  {
 
     public static float hue, saturation = 0;
     public void setParameter(String paramName, float value) throws IllegalParameterException{
-           
-            if ((paramName.equals("hue") && (value>360 || value<0)) || (paramName.equals("saturation") && (value>100 || value<0))){
-                IllegalParameterException exception = new IllegalParameterException("Value out-of-bounds");
-                throw exception;
-            }
-                
-            else{
-                if (paramName.equals("hue"))     hue = value;
-                if (paramName.equals("saturation"))      saturation = value;
-            }
+
+        if ((paramName.equals("hue") && (value>360 || value<0)) || (paramName.equals( "saturation") && (value>100 || value<0))){
+            throw new IllegalParameterException("Value out-of-bounds");
+        }
+
+        else{
+            if (paramName.equals("hue"))   hue = value;
+            if (paramName.equals("saturation"))    saturation = value;
+        }
 
     }
 
     public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){
-        
-        Pixel[][] imageVector = HueSaturationInterface.applyHueSaturation(image, saturation, hue);       
-        String optionValue = "Hue: " + Float.toString(hue) + " Saturation: " + Float.toString(saturation);
-        loggingService.addLog(fileName, "Hue-Saturation", optionValue );  
-        return imageVector;
-
+        Thread t1 = new Thread4(loggingService, hue, saturation, fileName);
+        t1.start();
+        return  HueSaturationInterface.applyHueSaturation(image, saturation, hue);
     }
 }
