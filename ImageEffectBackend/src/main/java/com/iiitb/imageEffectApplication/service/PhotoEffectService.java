@@ -46,7 +46,7 @@ public class PhotoEffectService {
                 e.printStackTrace();
             }
                  
-            Pixel[][] modifiedImage =  effect.apply(inputImage, imageName, null);    // Replace this with actual modified image
+            Pixel[][] modifiedImage =  effect.apply(inputImage, imageName, loggingService);    // Replace this with actual modified image
            
 
             // ACTUAL WORK ENDS HERE
@@ -169,7 +169,7 @@ public class PhotoEffectService {
 
             GrayscaleEffect effect = new GrayscaleEffect();  
             //System.out.println("hi");       
-            Pixel[][] modifiedImage =  effect.apply(inputImage, imageName, null); // Replace this with actual modified image
+            Pixel[][] modifiedImage =  effect.apply(inputImage, imageName, loggingService); // Replace this with actual modified image
             
             // // ACTUAL WORK ENDS HERE
 

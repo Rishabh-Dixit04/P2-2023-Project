@@ -12,21 +12,23 @@ public class HueSaturationEffect implements ParameterizableEffect  {
     public static float hue, saturation = 0;
     public void setParameter(String paramName, float value) throws IllegalParameterException{
            
-            if ((paramName == "hue" && (value>360 || value<0)) || (paramName == "saturation" && (value>100 || value<0))){
+            if ((paramName.equals("hue") && (value>360 || value<0)) || (paramName.equals("saturation") && (value>100 || value<0))){
                 IllegalParameterException exception = new IllegalParameterException("Value out-of-bounds");
                 throw exception;
             }
                 
             else{
-                if (paramName == "hue")     hue = value;
-                if (paramName == "saturation")      saturation = value;
+                if (paramName.equals("hue"))     hue = value;
+                if (paramName.equals("saturation"))      saturation = value;
             }
 
     }
 
     public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){
-
-        Pixel[][] imageVector = HueSaturationInterface.applyHueSaturation(image, saturation, hue);         
+        
+        Pixel[][] imageVector = HueSaturationInterface.applyHueSaturation(image, saturation, hue);       
+        String optionValue = "Hue = " + Float.toString(hue) + ", Saturation = " + Float.toString(saturation);
+        loggingService.addLog(fileName, "Hue-Saturation", optionValue );  
         return imageVector;
 
     }

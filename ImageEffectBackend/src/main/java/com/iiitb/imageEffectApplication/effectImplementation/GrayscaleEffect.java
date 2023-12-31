@@ -6,8 +6,12 @@ import com.iiitb.imageEffectApplication.service.LoggingService;
 
 public class GrayscaleEffect implements PhotoEffect {
     public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){     
-        //System.out.println("hi");    
-        Pixel[][] imageVector = GrayscaleInterface.applyGrayscale(image);         
+        
+
+        Pixel[][] imageVector = GrayscaleInterface.applyGrayscale(image);  
+        
+        loggingService.addLog(fileName, "Grayscale", "" );
+        
         return imageVector;
     }
 }
