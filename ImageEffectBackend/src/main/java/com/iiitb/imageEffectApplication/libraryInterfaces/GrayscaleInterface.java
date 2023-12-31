@@ -1,8 +1,5 @@
 package com.iiitb.imageEffectApplication.libraryInterfaces;
 
-
-
-
 public class GrayscaleInterface {
     static {
         String libraryPath = "GrayscaleLib";

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
+import main.java.com.iiitb.imageEffectApplication.effectImplementation.BrightnessEffect;
+import main.java.com.iiitb.imageEffectApplication.effectImplementation.ContrastEffect;
 import main.java.com.iiitb.imageEffectApplication.effectImplementation.GrayscaleEffect;
 import main.java.com.iiitb.imageEffectApplication.effectImplementation.HueSaturationEffect; 
 
@@ -71,7 +73,15 @@ public class PhotoEffectService {
             // ACTUAL WORK STARTS HERE
 
             // TODO
-            Pixel[][] modifiedImage = inputImage; // Replace this with actual modified image
+            BrightnessEffect effect = new BrightnessEffect();
+            try{
+                effect.setParameterValue(amount);
+            }
+            catch(IllegalParameterException e){
+                e.printStackTrace();
+            }
+
+            Pixel[][] modifiedImage = effect.apply(inputImage, imageName, loggingService); // Replace this with actual modified image
 
             // ACTUAL WORK ENDS HERE
 
@@ -95,7 +105,16 @@ public class PhotoEffectService {
             // ACTUAL WORK STARTS HERE
 
             // TODO
-            Pixel[][] modifiedImage = inputImage; // Replace this with actual modified image
+
+            ContrastEffect effect = new ContrastEffect();
+            try{
+                effect.setParameterValue(amount);
+            }
+            catch(IllegalParameterException e){
+                e.printStackTrace();
+            }
+
+            Pixel[][] modifiedImage = effect.apply(inputImage, imageName, loggingService);; // Replace this with actual modified image
 
             // ACTUAL WORK ENDS HERE
 
