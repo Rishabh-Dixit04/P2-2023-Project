@@ -27,7 +27,7 @@ public class HueSaturationEffect implements ParameterizableEffect  {
     public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){
         
         Pixel[][] imageVector = HueSaturationInterface.applyHueSaturation(image, saturation, hue);       
-        String optionValue = "Hue = " + Float.toString(hue) + ", Saturation = " + Float.toString(saturation);
+        String optionValue = "Hue: " + Float.toString(hue) + " Saturation: " + Float.toString(saturation);
         loggingService.addLog(fileName, "Hue-Saturation", optionValue );  
         return imageVector;
 
