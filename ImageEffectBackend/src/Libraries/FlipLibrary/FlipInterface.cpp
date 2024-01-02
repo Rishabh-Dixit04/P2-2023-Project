@@ -57,6 +57,15 @@ JNIEXPORT jobjectArray JNICALL Java_com_iiitb_imageEffectApplication_libraryInte
     // TODO
 
 
+    
+    if(horizontalFlipValue == 1){
+        HorizontalFlip(imageVector);
+    }
+
+    if(verticalFlipValue == 1){
+        VerticalFlip(imageVector);
+    }
+
 
 
 

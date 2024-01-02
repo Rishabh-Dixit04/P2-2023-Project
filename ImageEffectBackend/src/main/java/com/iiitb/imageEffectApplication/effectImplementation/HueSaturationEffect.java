@@ -7,7 +7,7 @@ import com.iiitb.imageEffectApplication.service.LoggingService;
 import com.iiitb.imageEffectApplication.exception.IllegalParameterException;
 
 
-class Thread4 extends Thread{
+class Thread4 extends Thread{           //Extending the Thread class
     private LoggingService ls;
     private float hue;
     private float sat;
@@ -26,7 +26,7 @@ class Thread4 extends Thread{
 public class HueSaturationEffect implements ParameterizableEffect  {
 
     public static float hue, saturation = 0;
-    public void setParameter(String paramName, float value) throws IllegalParameterException{
+    public void setParameter(String paramName, float value) throws IllegalParameterException{       //Ensuring robustness to keep values in expected range 
 
         if ((paramName.equals("hue") && (value>360 || value<0)) || (paramName.equals( "saturation") && (value>100 || value<0))){
             throw new IllegalParameterException("Value out-of-bounds");
@@ -41,7 +41,7 @@ public class HueSaturationEffect implements ParameterizableEffect  {
 
     public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){
         Thread t1 = new Thread4(loggingService, hue, saturation, fileName);
-        t1.start();
+        t1.start();         //Starting the thread to perform logging and apply simultaneously
         return  HueSaturationInterface.applyHueSaturation(image, saturation, hue);
     }
 }

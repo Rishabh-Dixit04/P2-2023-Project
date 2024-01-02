@@ -18,10 +18,10 @@ import java.io.*;
 
 @Service
 public class LoggingService {
-    private static List<LogModel> logs = new ArrayList<LogModel>();
-    public LoggingService(){
+    private static List<LogModel> logs = new ArrayList<LogModel>();     //Static List to keep track of models
+    public LoggingService(){        
         try{
-            File obj = new File("logs.txt");
+            File obj = new File("logs.txt");        //Creating file if it does not exist
             if (!obj.exists()){
                 obj.createNewFile();
             }
@@ -31,7 +31,7 @@ public class LoggingService {
         try{
         FileInputStream fis=new FileInputStream("logs.txt");  
         Scanner sc=new Scanner(fis);
-        while(sc.hasNextLine()){
+        while(sc.hasNextLine()){            //reading values from file to list
                   String str = sc.nextLine();
                   List<String> models_list = Arrays.asList(str.split(","));
                  
@@ -61,7 +61,7 @@ public class LoggingService {
     
     
     
-    public void addLog(String fileName, String effectName, String optionValues) {
+    public void addLog(String fileName, String effectName, String optionValues) {       //Adding new model
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         String localDateTime =  LocalDateTime.now().format(formatter);
         LogModel new_LogModel = new LogModel(localDateTime, fileName, effectName, optionValues);
@@ -76,7 +76,7 @@ public class LoggingService {
         return;
     }
 
-    public List<LogModel> getAllLogs() {
+    public List<LogModel> getAllLogs() {        //Getting all models
         List<LogModel> temp_logs = new ArrayList<LogModel>();
         temp_logs.addAll(logs);
         Collections.reverse(temp_logs);
@@ -84,7 +84,7 @@ public class LoggingService {
         
     }
 
-    public List<LogModel> getLogsByEffect(String effectName) {
+    public List<LogModel> getLogsByEffect(String effectName) {      //fillltering by effect
         List<LogModel> temp_logs = new ArrayList<LogModel>();
         for (LogModel x : getAllLogs()){
            
@@ -106,7 +106,7 @@ public class LoggingService {
         return;
     }
 
-    public List<LogModel> getLogsBetweenTimestamps(LocalDateTime startTime, LocalDateTime endTime) {
+    public List<LogModel> getLogsBetweenTimestamps(LocalDateTime startTime, LocalDateTime endTime) {        //filtering between timestamps
         List<LogModel> temp_logs = new ArrayList<LogModel>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
        

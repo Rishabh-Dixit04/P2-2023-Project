@@ -3,14 +3,14 @@
 #include "../Pixel.h"
 using namespace std;
 
-void applyBrightness(vector<vector<Pixel> > &img, float amount){
+void applyBrightness(vector<vector<Pixel> > &img, float amount){        
     amount = 2.55 * amount - 255;
-    for (auto &row: img){
+    for (auto &row: img){           //Iterating through all pixels and adding brightness
         for (Pixel &p: row){
             p.r = p.r + amount;
             p.g = p.g + amount;
             p.b = p.b + amount;
-            if(p.r > 255) p.r = 255;
+            if(p.r > 255) p.r = 255;        //clamping the values to ensure they are in valid range
             if(p.g > 255) p.g = 255;
             if(p.b > 255) p.b = 255;
             if(p.r < 0) p.r = 0;

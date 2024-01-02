@@ -7,7 +7,7 @@ import com.iiitb.imageEffectApplication.service.LoggingService;
 import com.iiitb.imageEffectApplication.exception.IllegalParameterException;
 
 
-class Thread1 extends Thread{
+class Thread1 extends Thread{           //Extending the Thread class
     private LoggingService ls;
     private float amount;
     private String fileName;
@@ -26,14 +26,13 @@ public class BrightnessEffect implements SingleValueParameterizableEffect {
     private float amount = 0;
     @Override
     public Pixel[][] apply(Pixel[][] image, String fileName, LoggingService loggingService){
-        //System.out.println("hi");
         Thread t1 = new Thread1(loggingService, amount, fileName);
-        t1.start();
+        t1.start();             //Starting the thread to perform logging and apply simultaneously
         return BrightnessInterface.applyBrightness(image, amount);
 
     }
-    public void setParameterValue(float parameterValue) throws IllegalParameterException{
-        if (parameterValue > 200 || parameterValue < 0){
+    public void setParameterValue(float parameterValue) throws IllegalParameterException{       //Ensuring robustness to keep values in expected range 
+        if (parameterValue > 200 || parameterValue < 0){           
             throw new IllegalParameterException("Value out-of-bounds");
         }
         else{

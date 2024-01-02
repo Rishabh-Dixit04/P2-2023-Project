@@ -45,7 +45,7 @@ JNIEXPORT jobjectArray JNICALL Java_com_iiitb_imageEffectApplication_libraryInte
     }
 
 
-
+    rotate(imageVector, value);
 
 
 
